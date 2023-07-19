@@ -12,11 +12,18 @@ describe('Teste para o componente PostComment', () => {
         render(<PostComment />)
         fireEvent.change(screen.getByTestId('campo-comment'), {
             target: {
-                value: 'adicionando comentario'
+                value: 'adicionando comentario teste'
             }
         })
         fireEvent.click(screen.getByTestId('btn-comment'))
-        expect(screen.getByText('adicionando comentario')).toBeInTheDocument()
+
+        fireEvent.change(screen.getByTestId('campo-comment'), {
+            target: {
+                value: 'adicionando segundo comentario teste'
+            }
+        })
+        fireEvent.click(screen.getByTestId('btn-comment'))
+        expect(screen.getAllByTestId('test-comment')).toHaveLength(2)
     })
 
 });
